@@ -1,0 +1,8 @@
+.side-hero {
+    background-repeat: no-repeat;
+    background-image: url('../assets/images/welcome.png');
+    background-size: cover;
+}
+.addUser {
+    background: url('../assets/images/spec.png') center/cover;
+}
