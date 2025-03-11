@@ -7,22 +7,26 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    password: '',
-    email: ''
-  });
+  // const [formData, setFormData] = useState({
+  //   password: 'hello',
+  //   email: 'hello@mail.com'
+  // });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  // const handleChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setFormData({
+  //     ...formData,
+  //     [name]: value
+  //   });
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Form submitted:', formData);
+    const logInData = {email, password};
+    console.log('Submit data:', logInData);
     // Performing form submission actions here
   };
   return (
@@ -31,7 +35,7 @@ const Login = () => {
       </aside>
       <main className='addUser w-75 d-flex flex-column justify-content-center align-items-center'>
         <h1>Login</h1>
-        <form className='addUserForm d-flex flex-column border border-0 p-5 rounded-4 w-75 h-75 bg-light bg-opacity-25 shadow' onSubmit={handleSubmit}>
+        <form className='addUserForm d-flex flex-column border border-0 p-5 rounded-4 w-75 bg-light bg-opacity-25 shadow' onSubmit={handleSubmit}>
           <section className='inputGroup d-flex flex-column'>
             <Label
             text='Email Address'
@@ -42,9 +46,9 @@ const Login = () => {
             id='user-email'
             placeholder='test@mail.com'
             name='User Email'
-            value={formData.email}
+            value={email}
             styleClass='bg-white border border-0 rounded-2 py-2 px-3 my-3'
-            changeFunct={handleChange}
+            changeFunct={e => setEmail(e.target.value)}
             />
           </section>
           <section className='inputGroup d-flex flex-column'>
@@ -57,16 +61,23 @@ const Login = () => {
             id='user-password'
             placeholder='Enter Password'
             name='User password'
-            value={formData.password}
+            value={password}
             styleClass='bg-white border border-0 rounded-2 py-2 px-3 my-3'
-            changeFunct={handleChange}
+            changeFunct={e => setPassword(e.target.value)}
             />
           </section>
           <section className='inputGroup d-flex flex-column'>
-            <Button type='submit' text='Login' />
+            <Button
+            type='submit'
+            text='Login'
+            styleClass='bg-primary text-light border border-0 rounded-2 py-2 px-3 my-2'/>
           </section>
         </form>
-        <Link to='/signup'>Register here</Link>
+        <Link
+        className='align-self-lg-start mt-3 ms-3 fw-bold text-decoration-none'
+        to='/sign-up'>
+          Register here
+        </Link>
       </main>
     </div>
   )

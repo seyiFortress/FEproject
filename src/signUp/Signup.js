@@ -34,7 +34,7 @@ const Signup = () => {
       </aside>
       <main className='addUser w-75 d-flex flex-column justify-content-center align-items-center'>
         <h1>Register</h1>
-        <form className='addUserForm d-flex flex-column border border-0 p-5 rounded-4 w-75 h-75 bg-light bg-opacity-25 shadow' onSubmit={handleSubmit}>
+        <form className='addUserForm d-flex flex-column border border-0 p-5 rounded-4 w-75 bg-light bg-opacity-25 shadow' onSubmit={handleSubmit}>
           <section className='inputGroup d-flex flex-column'>
             <Label
             text='Name'
@@ -94,9 +94,9 @@ const Signup = () => {
             changeFunct={handleChange}
             />
           </section>
-          {/* <section className='inputGroup d-flex flex-column'>
-            <Button type='submit' text='Create Account' />
-          </section> */}
+          <section className='inputGroup d-flex flex-column'>
+            <Button type='submit' text='Create Account' styleClass='bg-primary text-light border border-0 rounded-2 py-2 px-3 my-2'/>
+          </section>
         </form>
       </main>
     </div>

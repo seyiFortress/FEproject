@@ -1,16 +1,16 @@
 import React from 'react'
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 function FormInput({type, id, placeholder, value, name, changeFunct, styleClass}) {
-    // FormInput.propTypes = {
-    //     type: PropTypes.string.isRequired,
-    //     id: PropTypes.string.isRequired,
-    //     placeholder: PropTypes.string,
-    //     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    //     name: PropTypes.string.isRequired,
-    //     changeFunct: PropTypes.func.isRequired,
-    //     styleClass: PropTypes.string.isRequired
-    //   };
+    FormInput.propTypes = {
+        type: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired,
+        placeholder: PropTypes.string,
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+        name: PropTypes.string.isRequired,
+        changeFunct: PropTypes.func.isRequired,
+        styleClass: PropTypes.string.isRequired
+      };
   return (
     <React.Fragment>
       <input
