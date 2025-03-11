@@ -5,29 +5,26 @@ import Button from '../components/Button'
 import './Login.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Login = () => {
-  // const [formData, setFormData] = useState({
-  //   password: 'hello',
-  //   email: 'hello@mail.com'
-  // });
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // const handleChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setFormData({
-  //     ...formData,
-  //     [name]: value
-  //   });
-  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const logInData = {email, password};
     console.log('Submit data:', logInData);
     // Performing form submission actions here
+    axios.get('https://cyrilyoruba.juadebgabriel.com/admin_login')
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.log(error);
+    });
   };
   return (
     <div className='wrapper vh-100 vw-100 bg-primary d-lg-flex gap-0'>

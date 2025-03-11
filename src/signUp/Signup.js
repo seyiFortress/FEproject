@@ -4,28 +4,31 @@ import Label from '../components/Label'
 import FormInput from '../components/FormInput'
 import { useState } from 'react'
 import Button from '../components/Button'
+import axios from 'axios'
 
 const Signup = () => {
 
-  const [formData, setFormData] = useState({
-    name: '',
-    password: '',
-    confirmed$password: '',
-    email: ''
-  });
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Form submitted:', formData);
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+    const signUpData = {name, email, password};
+    console.log('Submit data:', signUpData);
     // Performing form submission actions here
+    axios.post('https://cyrilyoruba.juadebgabriel.com/register_admin', signUpData)
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.log(error);
+    });
   };
 
   return (
@@ -45,9 +48,9 @@ const Signup = () => {
             id='user-name'
             placeholder='Enter Name'
             name='User Name'
-            value={formData.name}
+            value={name}
             styleClass='bg-white border border-0 rounded-2 py-2 px-3 my-3'
-            changeFunct={handleChange}
+            changeFunct={e => setName(e.target.value)}
             />
           </section>
           <section className='inputGroup d-flex flex-column'>
@@ -60,9 +63,9 @@ const Signup = () => {
             id='user-email'
             placeholder='Enter Email Address'
             name='User Email'
-            value={formData.email}
+            value={email}
             styleClass='bg-white border border-0 rounded-2 py-2 px-3 my-3'
-            changeFunct={handleChange}
+            changeFunct={e => setEmail(e.target.value)}
             />
           </section>
           <section className='inputGroup d-flex flex-column'>
@@ -75,9 +78,9 @@ const Signup = () => {
             id='user-password'
             placeholder='Enter Password'
             name='User password'
-            value={formData.password}
+            value={password}
             styleClass='bg-white border border-0 rounded-2 py-2 px-3 my-3'
-            changeFunct={handleChange}
+            changeFunct={e => setPassword(e.target.value)}
             />
           </section>
           <section className='inputGroup d-flex flex-column'>
@@ -89,14 +92,15 @@ const Signup = () => {
             type='password'
             id='confirm-password'
             placeholder='Confirm Password'
-            value={formData.confirmed$password}
+            value={confirmPassword}
             styleClass='bg-white border border-0 rounded-2 py-2 px-3 my-3'
-            changeFunct={handleChange}
+            changeFunct={e => setConfirmPassword(e.target.value)}
             />
           </section>
           <section className='inputGroup d-flex flex-column'>
             <Button type='submit' text='Create Account' styleClass='bg-primary text-light border border-0 rounded-2 py-2 px-3 my-2'/>
           </section>
+          {/* <p>{name}, {email}, {password}, {confirmPassword}</p>; */}
         </form>
       </main>
     </div>
